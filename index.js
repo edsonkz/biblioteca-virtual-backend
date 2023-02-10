@@ -1,0 +1,3 @@
+require("dotenv").config();
+require("esm")(module);
+module.exports = require("./src/server");
