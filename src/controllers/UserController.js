@@ -30,9 +30,9 @@ export default {
   },
 
   async login(req, res) {
-    const { name, password } = req.body;
+    const { email, password } = req.body;
     try {
-      const user = await User.findOne({ where: { name } });
+      const user = await User.findOne({ where: { email } });
       const passwordCorrect =
         user === null ? false : await bcrypt.compare(password, user.password);
 
@@ -43,13 +43,20 @@ export default {
       }
 
       const userForToken = {
+        email: user.email,
         name: user.name,
         id: user.id,
       };
-      console.log(process.env.SECRET);
       const token = jwt.sign(userForToken, process.env.SECRET);
 
-      res.status(200).send({ token, name: user.name, isAdmin: user.isAdmin });
+      res
+        .status(200)
+        .send({
+          token,
+          name: user.name,
+          isAdmin: user.isAdmin,
+          email: user.email,
+        });
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
