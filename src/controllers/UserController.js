@@ -49,14 +49,13 @@ export default {
       };
       const token = jwt.sign(userForToken, process.env.SECRET);
 
-      res
-        .status(200)
-        .send({
-          token,
-          name: user.name,
-          isAdmin: user.isAdmin,
-          email: user.email,
-        });
+      res.status(200).send({
+        token,
+        id: user.id,
+        name: user.name,
+        isAdmin: user.isAdmin,
+        email: user.email,
+      });
     } catch (error) {
       console.log(error);
       res.status(500).send(error);

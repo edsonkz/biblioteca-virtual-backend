@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 app.use(fileUpload());
 app.use(
-  "/api/epubs",
-  express.static(path.join(__dirname, "database", "epubs"))
+  "/api/books",
+  express.static(path.join(__dirname, "database", "books"))
 );
 app.use("/api", routes);
 

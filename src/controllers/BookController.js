@@ -6,7 +6,7 @@ export default {
     let { book } = req.files;
     let { name } = req.body;
     console.log(req.body);
-    const newpath = path.join(__dirname, "..", "database", "epubs", book.name);
+    const newpath = path.join(__dirname, "..", "database", "books", book.name);
     try {
       const newBook = await Book.create({ name, filename: book.name });
       book.mv(newpath, (err) => {

@@ -14,5 +14,7 @@ routes.get("/books/:id", BookController.findOne);
 routes.get("/books", BookController.findAll);
 
 routes.post("/readbook", ReadBookController.createOrUpdate);
+routes.put("/readbook", ReadBookController.finishedRead);
+routes.get("/readbook", ReadBookController.findReadBooksByUsers);
 
 export default routes;

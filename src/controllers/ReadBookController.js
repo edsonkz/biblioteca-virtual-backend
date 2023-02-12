@@ -1,4 +1,5 @@
 import ReadBook from "../entities/ReadBook";
+import sequelize from "../database";
 
 export default {
   async createOrUpdate(req, res) {
@@ -37,5 +38,29 @@ export default {
       console.error(error);
       res.send(error);
     }
+  },
+
+  async finishedRead(req, res) {
+    const { userId, bookId } = req.body;
+
+    const finishedBook = await ReadBook.update(
+      { finished: true },
+      {
+        where: {
+          UserId: userId,
+          BookId: bookId,
+        },
+      }
+    );
+    res.send({ message: "Book read was finished." });
+  },
+
+  async findReadBooksByUsers(req, res) {
+    const booksbyusers = await sequelize.query(
+      "select distinct user.name as username, user.id as userId , book.name as bookname, book.id as bookId , x.id from library.readbooks as x inner join library.users as user on x.UserId = user.id inner join library.books as book on x.BookId = book.id",
+      { type: sequelize.QueryTypes.SELECT }
+    );
+
+    res.send(booksbyusers);
   },
 };
