@@ -57,10 +57,16 @@ export default {
 
   async findReadBooksByUsers(req, res) {
     const booksbyusers = await sequelize.query(
-      "select distinct user.name as username, user.id as userId , book.name as bookname, book.id as bookId , x.id from library.readbooks as x inner join library.users as user on x.UserId = user.id inner join library.books as book on x.BookId = book.id",
+      "select distinct user.name as username, user.id as userId , book.name as bookname, book.id as bookId , x.id, x.finished from library.readbooks as x inner join library.users as user on x.UserId = user.id inner join library.books as book on x.BookId = book.id",
       { type: sequelize.QueryTypes.SELECT }
     );
 
     res.send(booksbyusers);
+  },
+
+  async findAll(req, res) {
+    const readBooks = await ReadBook.findAll({});
+
+    res.send(readBooks);
   },
 };
