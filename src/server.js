@@ -1,7 +1,7 @@
 import server from "./app";
 import sequelize from "./database";
 
-const PORT = process.env.PORT || 3333;
+const PORT = 3001;
 server.listen(PORT, async () => {
   try {
     await sequelize.sync();

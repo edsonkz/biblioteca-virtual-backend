@@ -6,6 +6,12 @@ export default {
   async create(req, res) {
     let newUser = req.body;
     try {
+      let existUser = await User.findOne({ where: { email: newUser.email } });
+
+      if (existUser) {
+        return res.status(400).send("Usuário já existente com esse email.");
+      }
+
       const saltRounds = 10;
       const passwordHash = await bcrypt.hash(newUser.password, saltRounds);
       newUser = { ...newUser, password: passwordHash };
