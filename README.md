@@ -1,7 +1,7 @@
 # biblioteca-virtual-backend
 Backend da aplicação [biblioteca-virtual-frontend](https://github.com/edsonkz/biblioteca-virtual-frontend). Funciona com Node.js e MySQL.
 ## Instalação
-Necessária versão 16.15.1 e npm 8.11.0.
+Necessária versão node 16.15.1 e npm 8.11.0.
 No diretório raiz da aplicação (o que possuir o arquivo package.json) inserir no seu terminal favorito o comando `npm install`.
 Criar no diretório raiz arquivo `.env` com as informações referente a conexão com o banco (o contéudo do arquivo `.env.sample` é um exemplo do formato que `.env` deve ter).
 ### Formato do .env
